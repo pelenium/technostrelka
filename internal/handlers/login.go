@@ -6,6 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Login(c *gin.Context) {
+func LoginGET(c *gin.Context) {
 	c.HTML(http.StatusOK, "login.html", gin.H{})
 }
