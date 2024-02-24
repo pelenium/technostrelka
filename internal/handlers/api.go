@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,6 +24,8 @@ func RegisterUser(db *sql.DB) gin.HandlerFunc {
 		}
 
 		fmt.Println(res)
+
+		c.JSON(http.StatusOK, gin.H{})
 	}
 }
 
@@ -38,7 +41,9 @@ func LoginUser(db *sql.DB) gin.HandlerFunc {
 		if err != nil {
 			c.Error(err)
 		}
-		
+
 		fmt.Println(res)
+
+		c.JSON(http.StatusOK, gin.H{})
 	}
 }
