@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,49 +66,52 @@
             background-color: transparent;
             font-size: 20px;
             margin-top: 15px;
-            align-self: flex-end; 
+            align-self: flex-end;
             cursor: pointer;
         }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h1>Регистрация</h1>
+    <div class="container">
+        <h1>Регистрация</h1>
 
-    <input id="username" type="text" placeholder="Имя пользователя">
-    <input id="password" type="password" placeholder="Пароль">
+        <input id="username" type="text" placeholder="Имя пользователя">
+        <input id="password" type="password" placeholder="Пароль">
 
-    <button onclick="register()">Зарегистрироваться</button>
+        <button onclick="register()">Зарегистрироваться</button>
 
-</div>
+    </div>
 
-<script>
-    function register() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
+    <script>
+        function register() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-        var data = {
-            "username": username,
-            "password": password
-        };
+            var data = {
+                "action": "register",
+                "username": username,
+                "password": password
+            };
 
-        fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Что-то пошло не так');
-            }
-            window.location.href = '/login';
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }
-</script>
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Что-то пошло не так');
+                    }
+                    window.location.href = '/login';
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
 </body>
+
 </html>

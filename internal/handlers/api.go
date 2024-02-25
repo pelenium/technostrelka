@@ -25,6 +25,23 @@ func RegisterUser(db *sql.DB) gin.HandlerFunc {
 
 		fmt.Println(res)
 
+		if res["action"] == "register" {
+			sqlStmt := `SELECT username FROM userinfo WHERE username = ?`
+			username := ""
+			err := db.QueryRow(sqlStmt, res["username"]).Scan(&username)
+			if err != nil {
+				if err != sql.ErrNoRows {
+					panic(err)
+				}
+				sqlStmt = `INSERT INTO userinfo(username, password) VALUES(?, ?)`
+				_, err = db.Exec(sqlStmt, res["username"], res["password"])
+				if err != nil {
+					panic(err)
+				}
+			}
+		} else {
+			c.JSON(http.StatusTeapot, gin.H{})
+		}
 		c.JSON(http.StatusOK, gin.H{})
 	}
 }
@@ -44,6 +61,34 @@ func LoginUser(db *sql.DB) gin.HandlerFunc {
 
 		fmt.Println(res)
 
-		c.JSON(http.StatusOK, gin.H{})
+		if res["action"] == "login" {
+			sqlStmt := `SELECT username FROM userinfo WHERE username = ?`
+			username := ""
+			err := db.QueryRow(sqlStmt, res["username"]).Scan(&username)
+			if err != nil {
+				if err != sql.ErrNoRows {
+					panic(err)
+				}
+				c.JSON(http.StatusTeapot, gin.H{})
+			}
+
+			sqlStmt = `SELECT password FROM userinfo WHERE username = ?`
+			password := ""
+			err = db.QueryRow(sqlStmt, res["username"]).Scan(&password)
+			if err != nil {
+				if err != sql.ErrNoRows {
+					panic(err)
+				}
+				c.JSON(http.StatusTeapot, gin.H{})
+			}
+
+			if password == res["password"] {
+				c.JSON(http.StatusOK, gin.H{})
+			} else {
+				c.JSON(http.StatusTeapot, gin.H{})
+			}
+		} else {
+			c.JSON(http.StatusTeapot, gin.H{})
+		}
 	}
 }

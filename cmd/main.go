@@ -10,11 +10,22 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "./internal/db/users.db")
+	db, err := sql.Open("sqlite3", "./internal/db/users.sqlite")
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
+
+	sts := `DROP TABLE userinfo;
+			CREATE TABLE IF NOT EXISTS userinfo (
+				username TEXT PRIMARY KEY,  
+				password TEXT NOT NULL
+			);`
+	_, err = db.Exec(sts)
+
+	if err != nil {
+		panic(err)
+	}
 
 	r := gin.Default()
 
