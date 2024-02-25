@@ -6,12 +6,10 @@
     <title>Регистрация</title>
     <style>
         body {
-
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             font-family: Arial;
             overflow-y: hidden;
         }
@@ -53,6 +51,10 @@
             padding-left: 30px;
         }
 
+        input[type="password"] {
+            padding-left: 30px;
+        }
+
         input:focus {
             outline: none;
         }
@@ -72,11 +74,40 @@
 <div class="container">
     <h1>Регистрация</h1>
 
-    <input type="text" placeholder="Имя пользователя">
-    <input type="text" placeholder="Пароль">
+    <input id="username" type="text" placeholder="Имя пользователя">
+    <input id="password" type="password" placeholder="Пароль">
 
-    <button>Войти</button>
+    <button onclick="register()">Зарегистрироваться</button>
 
 </div>
+
+<script>
+    function register() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var data = {
+            "username": username,
+            "password": password
+        };
+
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Что-то пошло не так');
+            }
+            window.location.href = '/login';
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+</script>
 </body>
 </html>

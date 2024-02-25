@@ -6,12 +6,10 @@
     <title>Вход</title>
     <style>
         body {
-
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             font-family: Arial;
             overflow-y: hidden;
         }
@@ -53,6 +51,10 @@
             padding-left: 30px;
         }
 
+        input[type="password"] {
+            padding-left: 30px;
+        }
+
         input:focus {
             outline: none;
         }
@@ -65,7 +67,6 @@
             margin-top: 15px;
             align-self: flex-end; 
             cursor: pointer;
-
         }
     </style>
 </head>
@@ -73,12 +74,41 @@
 <div class="container">
     <h1>Вход</h1>
 
-    <input type="text" placeholder="Имя пользователя">
-    <input type="text" placeholder="Пароль">
+    <input id="username" type="text" placeholder="Имя пользователя">
+    <input id="password" type="password" placeholder="Пароль">
 
-    <button>Войти</button>
+    <button onclick="login()">Войти</button>
 
     <h5>Если вы не зарегистрированы, <a href="/signup" style="color: black;">зарегистрируйтесь</a></h5>
 </div>
+
+<script>
+    function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var data = {
+            "username": username,
+            "password": password
+        };
+
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Что-то пошло не так');
+            }
+            window.location.href = '/index';
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+</script>
 </body>
 </html>
