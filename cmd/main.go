@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+
 	"technostrelka/internal/handlers"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -35,6 +36,8 @@ func main() {
 
 	r.GET("/login", handlers.LoginGET)
 	r.POST("/login", handlers.LoginUser(db))
+
+	r.GET("/profile", handlers.Profile)
 
 	r.GET("/signup", handlers.SignupGET)
 	r.POST("/signup", handlers.RegisterUser(db))
