@@ -1,21 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My profile</title>
+    <title>Профиль</title>
+    <style>
+        body{
+            font-family: Arial;
+        }
+
+        .avatar{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        h3{
+            margin-left: 10px;       
+        }
+
+        .imgAvatar{
+            width: 100px;
+            border-radius: 60%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30vw;
+        }
+
+        .gallery{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100vw; 
+            margin: 0 auto;
+            overflow-y: auto; 
+        }
+
+        .galleryimg{
+            width: 300px;
+            margin-right: 10px; 
+        }
+
+        button {
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            margin-left: 100px;
+
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Hey there!</h1>
+    <div class="avatar">
+        <img class="imgAvatar" src="https://media.gq.com/photos/5e94dfddd695ee0009153e93/4:3/w_2999,h_2249,c_limit/kanye-west-gq-cover-may-2020-promo.jpg" alt="">
+        <h3>LM3ALLEM</h3>
+    </div>
+    <div class="container">
+        <h1>Фотографии</h1>
+    </div>
+    <div class="gallery">
+        <!-- Галерея -->
+    </div>
+    <p style="text-align: center;">
+        <label for="fileInput">Загрузить фотографию</label>
+        <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
+    </p>
+
+    <script>
+        function previewImage(event) {
+            let gallery = document.querySelector('.gallery');
+            let file = event.target.files[0];
+            let reader = new FileReader();
+
+            reader.onload = function() {
+                let img = document.createElement('img');
+                img.src = reader.result;
+                img.classList.add('galleryimg');
+                gallery.appendChild(img);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </body>
-
-<script>
-    /*
-    TODO: 
-    - скрипт для проверки авторизирован ли пользователь (если будет время, то можем попробовать прикрутить куки)
-    */
-</script>
-
 </html>
