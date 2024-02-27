@@ -17,11 +17,12 @@ func main() {
 	}
 	defer db.Close()
 
-	sts := `DROP TABLE userinfo;
-			CREATE TABLE IF NOT EXISTS userinfo (
+	sts := `CREATE TABLE IF NOT EXISTS userinfo (
 				username TEXT PRIMARY KEY,  
 				password TEXT NOT NULL
-			);`
+			);
+			DELETE FROM userinfo;
+			`
 	_, err = db.Exec(sts)
 
 	if err != nil {
@@ -37,10 +38,10 @@ func main() {
 	r.GET("/login", handlers.LoginGET)
 	r.POST("/login", handlers.LoginUser(db))
 
-	r.GET("/profile", handlers.Profile)
-
 	r.GET("/signup", handlers.SignupGET)
 	r.POST("/signup", handlers.RegisterUser(db))
+
+	r.GET("/users/:username", handlers.Profile(db))
 
 	r.Run(":8080")
 }

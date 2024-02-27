@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,51 +66,53 @@
             background-color: transparent;
             font-size: 20px;
             margin-top: 15px;
-            align-self: flex-end; 
+            align-self: flex-end;
             cursor: pointer;
         }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h1>Вход</h1>
+    <div class="container">
+        <h1>Вход</h1>
 
-    <input id="username" type="text" placeholder="Имя пользователя">
-    <input id="password" type="password" placeholder="Пароль">
+        <input id="username" type="text" placeholder="Имя пользователя">
+        <input id="password" type="password" placeholder="Пароль">
 
-    <button onclick="login()">Войти</button>
+        <button onclick="login()">Войти</button>
 
-    <h5>Если вы не зарегистрированы, <a href="/signup" style="color: black;">зарегистрируйтесь</a></h5>
-</div>
+        <h5>Если вы не зарегистрированы, <a href="/signup" style="color: black;">зарегистрируйтесь</a></h5>
+    </div>
 
-<script>
-    function login() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-        var data = {
-            "action": "login",
-            "username": username,
-            "password": password
-        };
+            var data = {
+                "action": "login",
+                "username": username,
+                "password": password
+            };
 
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Что-то пошло не так');
-            }
-            window.location.href = '/profile';
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }
-</script>
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Что-то пошло не так');
+                    }
+                    window.location.href = '/';
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
 </body>
+
 </html>
