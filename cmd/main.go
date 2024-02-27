@@ -43,5 +43,10 @@ func main() {
 
 	r.GET("/users/:username", handlers.Profile(db))
 
+	api := r.Group("/api") 
+	{
+		api.POST("/upload-image", )
+	}
+
 	r.Run(":8080")
 }
