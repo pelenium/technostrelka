@@ -85,26 +85,32 @@
     </div>
     <p style="text-align: center;">
         <label for="fileInput">Загрузить фотографию</label>
-        <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
+        <input type="file" id="fileInput" accept="image/*" onchange="uploadImage(event)">
     </p>
 
     <script>
-        function previewImage(event) {
-            let gallery = document.querySelector('.gallery');
-            let file = event.target.files[0];
-            let reader = new FileReader();
+    function uploadImage(event) {
+        let file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('image', file);
+        formData.append('username', '{{.username}}'); 
 
-            reader.onload = function () {
-                let img = document.createElement('img');
-                img.src = reader.result;
-                img.classList.add('galleryimg');
-                gallery.appendChild(img);
+        fetch('/api/upload-image', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Что-то пошло не так');
             }
+            location.reload();
+            console.log(formData);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
 
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
     </script>
 </body>
 

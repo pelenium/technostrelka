@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,11 +84,18 @@
     </div>
 
     <script>
-        function login() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
+        window.onload = function() {
+            let username = getCookie("username");
+            if (username) {
+                window.location.href = '/users/' + username;
+            }
+        }
 
-            var data = {
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let data = {
                 "action": "login",
                 "username": username,
                 "password": password
@@ -106,13 +112,20 @@
                     if (!response.ok) {
                         throw new Error('Что-то пошло не так');
                     }
-                    window.location.href = '/';
+                    document.cookie = `username=${username}; path=/`;
+                    window.location.href = '/users/' + username;
                 })
                 .catch(error => {
                     console.error(error);
                 });
         }
+
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
     </script>
 </body>
-
 </html>
