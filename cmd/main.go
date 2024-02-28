@@ -45,7 +45,7 @@ func main() {
 
 	api := r.Group("/api") 
 	{
-		api.POST("/upload-image", )
+		api.POST("/upload-image", handlers.UploadImage)
 	}
 
 	r.Run(":8080")

@@ -96,15 +96,16 @@ func LoginUser(db *sql.DB) gin.HandlerFunc {
 func UploadImage(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		panic(err)
 	}
 
-	dst := fmt.Sprintf("internal/users//%s", file.Filename)
+	fmt.Println(file.Filename)
+
+	dst := fmt.Sprintf("internal/users/%s/%s", c.Request.PostForm["username"][0], file.Filename)
 	if err := c.SaveUploadedFile(file, dst); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
+	} else {
+		c.JSON(http.StatusOK, gin.H{"message": "File uploaded successfully"})
 	}
-
-	c.JSON(http.StatusOK, gin.H{"message": "File uploaded successfully"})
 }
