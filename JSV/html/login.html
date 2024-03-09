@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            overflow-y: hidden;
+        }
+
+        h5 {
+            font-weight: 100;
+            color: #9E9E9E;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-weight: 100;
+            margin-right: 400px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 30vw;
+        }
+
+        input {
+            border-left: 3px solid #9E9E9E;
+            border-right: none;
+            border-bottom: none;
+            border-top: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-size: 30px;
+            color: #9E9E9E;
+        }
+
+        input[type="text"] {
+            padding-left: 30px;
+        }
+
+        input[type="password"] {
+            padding-left: 30px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-top: 15px;
+            align-self: flex-end;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Вход</h1>
+
+        <form action="/login" method="POST">
+
+            <input id="username" type="text" placeholder="Имя пользователя" name="username">
+            <input id="password" type="password" placeholder="Пароль" name="password">
+    
+            <button type="submit">Войти</button>
+    
+        </form>
+        <h5>Если вы не зарегистрированы, <a href="/signup" style="color: black;">зарегистрируйтесь</a></h5>
+    </div>
+</body>
+</html>

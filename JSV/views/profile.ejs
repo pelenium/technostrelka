@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <style>
+        body {
+            font-family: Arial;
+            overflow-x: hidden;
+        }
+
+        .avatar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        h3 {
+            margin-left: 10px;
+        }
+
+        .imgAvatar {
+            width: 100px;
+            border-radius: 60%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30vw;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+
+        .galleryimg {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .galleryimg:hover {
+            opacity: 0.7;
+        }
+
+        .galleryvideo {
+            width: 320px;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            margin-left: 100px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* The Modal (background) */
+        #image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 60%;
+            max-width: 600px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        #image-viewer .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #image-viewer .close:hover,
+        #image-viewer .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="avatar">
+        <h3><%= username %></h3>
+    </div>
+    <div class="container">
+        <h1>Медиа</h1>
+    </div>
+    <div class="gallery">
+        <% photos.forEach((photo, index) => { %>
+        <img class="galleryimg" src="/<%= photo.url %>"
+            data-index="<%= index %>">
+        <% }); %>
+        <% videos.forEach(video => { %>
+        <video class="galleryvideo" controls>
+            <source src="/<%= video.url %>" type="video/mp4">
+            Ваш браузер такое не поддерживает
+        </video>
+        <% }); %>
+    </div>
+
+    <form action="/profile/upload?username=<%= username %>" method="post" enctype="multipart/form-data">
+        <label for="mediaInput">Выбрать фотографию</label>
+        <input type="file" id="mediaInput" name="media" accept="image/*, video/*">
+        <button type="submit" value="Загрузить">Загрузить</button>
+    </form>
+
+    <div id="image-viewer">
+        <span class="close">&times;</span>
+        <a id="downloadLink" href="" download style="color: white; text-decoration: none; margin: 10px;">скачать</a>
+        <img class="modal-content" id="full-image">
+    </div>
+
+    <script>
+        let images = document.querySelectorAll('.galleryimg');
+
+        images.forEach(function (image) {
+            image.addEventListener('click', function () {
+                let src = this.src;
+                document.getElementById('full-image').src = src;
+                
+                let index = this.getAttribute('data-index');
+                
+                document.getElementById('downloadLink').href = src;
+                
+                document.getElementById('image-viewer').style.display = 'block';
+            });
+        });
+
+        document.querySelector('#image-viewer .close').addEventListener('click', function () {
+            document.getElementById('image-viewer').style.display = 'none';
+        });
+
+    </script>
+
+</body>
+
+</html>
