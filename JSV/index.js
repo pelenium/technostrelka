@@ -97,7 +97,7 @@ app.get('/profile', (req, res) => {
         if (err) {
             console.error('Error retrieving user from database:', err);
             return res.status(500).send('Internal Server Error');
-        }
+        }   
 
         if (!row) {
             console.log('Такого юзера нет');
@@ -179,6 +179,36 @@ app.post('/login', (req, res) => {
 app.get('/404', (req, res) => {
     res.sendFile(__dirname + '/html/notfound.html');
 });
+
+app.get('/', (req, res) => {
+    db.all('SELECT photos.*, users.username AS uploader FROM photos JOIN users ON photos.user_id = users.id', (err, photosWithUsers) => {
+        if (err) {
+            console.error('Error retrieving photos from database:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        
+        db.all('SELECT videos.*, users.username AS uploader FROM videos JOIN users ON videos.user_id = users.id', (err, videosWithUsers) => {
+            if (err) {
+                console.error('Error retrieving videos from database:', err);
+                return res.status(500).send('Internal Server Error');
+            }
+            
+            db.all('SELECT raw_files.*, users.username AS uploader FROM raw_files JOIN users ON raw_files.user_id = users.id', (err, rawFilesWithUsers) => {
+                if (err) {
+                    console.error('Error retrieving raw files from database:', err);
+                    return res.status(500).send('Internal Server Error');
+                }
+                
+                res.render('index', { 
+                    photosWithUsers: photosWithUsers,
+                    videosWithUsers: videosWithUsers,
+                    rawFilesWithUsers: rawFilesWithUsers
+                });
+            });
+        });
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);

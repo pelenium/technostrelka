@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .menu-bar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .menu-bar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .menu-bar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .gallery > div {
+            margin: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            overflow: hidden;
+            width: calc(50% - 20px);
+            max-width: 400px;
+            flex-grow: 1;
+            flex-basis: calc(50% - 20px);
+        }
+
+        .gallery img,
+        .gallery video {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 5px 5px 0 0;
+            object-fit: cover;
+            transition: 0.5s;
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery p {
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin: 0;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .galleryimg:hover {
+            opacity: 0.7;
+            transition: 0.5s;
+        }
+
+        #image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 60%;
+            max-width: 600px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        #image-viewer .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #image-viewer .close:hover,
+        #image-viewer .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #share-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+        .buttons {
+            position: absolute;
+            margin-top: -500px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="menu-bar">
+        <a href="/">Главная</a>
+        <a href="/profile">Мой профиль</a>
+    </div>
+    <h2>Главная</h2>
+    <div class="gallery">
+        <% photosWithUsers.forEach((photo, index) => { %>
+        <div>
+            <img class="galleryimg" src="<%= photo.url %>" alt="Uploaded Image" data-index="<%= index %>">
+            <p>Автор: <%= photo.uploader %></p>
+        </div>
+        <% }); %>
+        <% videosWithUsers.forEach((video, index) => { %>
+        <div>
+            <video class="galleryvideo" controls>
+                <source src="<%= video.url %>" type="video/mp4">
+                Ваш браузер не поддерживает видео
+            </video>
+            <p>Автор: <%= video.uploader %></p>
+        </div>
+        <% }); %>
+    </div>
+
+    <!-- The Modal -->
+    <div id="image-viewer">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="full-image">
+        <div class="buttons">
+            <button id="share-button">Поделиться</button>
+            <a id="downloadLink" href="" download style="color: white; text-decoration: none; margin: 10px;">скачать</a>
+        </div>
+    </div>
+
+    <script>
+        let images = document.querySelectorAll('.galleryimg');
+
+        images.forEach(function (image) {
+            image.addEventListener('click', function () {
+                let src = this.src;
+                document.getElementById('full-image').src = src;
+
+                let index = this.getAttribute('data-index');
+
+                document.getElementById('downloadLink').href = src;
+
+                document.getElementById('image-viewer').style.display = 'block';
+            });
+        });
+
+        document.querySelector('#image-viewer .close').addEventListener('click', function () {
+            document.getElementById('image-viewer').style.display = 'none';
+        });
+
+        document.querySelector('#share-button').addEventListener('click', function () {
+            let imageSrc = document.getElementById('full-image').src;
+            navigator.clipboard.writeText(imageSrc);
+            alert('Готово');
+        });
+
+    </script>
+</body>
+
+</html>
