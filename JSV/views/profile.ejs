@@ -11,6 +11,19 @@
             overflow-x: hidden;
         }
 
+        .menu-bar {
+            overflow: hidden;
+        }
+
+        .menu-bar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
         .avatar {
             display: flex;
             flex-direction: row;
@@ -146,6 +159,12 @@
 </head>
 
 <body>
+
+    <div class="menu-bar">
+        <a href="/">Главная</a>
+        <a href="/profile">Мой профиль</a>
+    </div>
+
     <div class="avatar">
         <h3><%= username %></h3>
     </div>
