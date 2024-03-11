@@ -110,11 +110,11 @@ app.get('/profile', (req, res) => {
         if (err) {
             console.error('Error retrieving user from database:', err);
             return res.status(500).send('Internal Server Error');
-        }   
+        }
 
         if (!row) {
             console.log('Такого юзера нет');
-            return res.status(401).send('Такого юзера нет');
+            return res.status(200).redirect('/login');
         }
 
         db.all('SELECT * FROM photos WHERE user_id = ?', [row.id], (err, photos) => {
@@ -135,11 +135,11 @@ app.get('/profile', (req, res) => {
                         return res.status(500).send('Internal Server Error');
                     }
 
-                    res.render('profile', { 
-                        username: username, 
-                        photos: photos, 
-                        videos: videos, 
-                        rawFiles: rawFiles 
+                    res.render('profile', {
+                        username: username,
+                        photos: photos,
+                        videos: videos,
+                        rawFiles: rawFiles
                     });
                 });
             });
@@ -203,20 +203,20 @@ app.get('/', (req, res) => {
             console.error('Error retrieving photos from database:', err);
             return res.status(500).send('Internal Server Error');
         }
-        
+
         db.all('SELECT videos.*, users.username AS uploader FROM videos JOIN users ON videos.user_id = users.id', (err, videosWithUsers) => {
             if (err) {
                 console.error('Error retrieving videos from database:', err);
                 return res.status(500).send('Internal Server Error');
             }
-            
+
             db.all('SELECT raw_files.*, users.username AS uploader FROM raw_files JOIN users ON raw_files.user_id = users.id', (err, rawFilesWithUsers) => {
                 if (err) {
                     console.error('Error retrieving raw files from database:', err);
                     return res.status(500).send('Internal Server Error');
                 }
-                
-                res.render('index', { 
+
+                res.render('index', {
                     photosWithUsers: photosWithUsers,
                     videosWithUsers: videosWithUsers,
                     rawFilesWithUsers: rawFilesWithUsers
