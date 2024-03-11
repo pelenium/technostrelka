@@ -90,6 +90,19 @@ app.post('/profile/upload', upload.single('media'), (req, res) => {
     });
 });
 
+app.post('/profile/delete/photo', (req, res) => {
+    const { photoId } = req.body;
+
+    db.run('DELETE FROM photos WHERE id = ?', [photoId], (err) => {
+        if (err) {
+            console.error('Error deleting photo from database:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.redirect('/succes');
+    });
+});
+
 app.get('/profile', (req, res) => {
     const { username } = req.query;
 
@@ -140,6 +153,10 @@ app.get('/login', (req, res) => {
 
 app.get('/signup', (req, res) => {
     res.sendFile(__dirname + '/html/signup.html');
+});
+
+app.get('/succes', (req, res) => {
+    res.sendFile(__dirname + '/html/succes.html');
 });
 
 app.post('/signup', (req, res) => {

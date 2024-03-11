@@ -79,7 +79,6 @@
             color: black;
             border: none;
             background-color: transparent;
-            font-size: 20px;
             margin-top: 15px;
             cursor: pointer;
             margin-left: 100px;
@@ -98,7 +97,6 @@
             cursor: pointer;
         }
 
-        /* The Modal (background) */
         #image-viewer {
             display: none;
             position: fixed;
@@ -155,6 +153,19 @@
             }
         }
 
+        .buttons {
+            position: absolute;
+            margin-top: -500px;
+        }
+
+        #share-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            background-color: white;
+        }
     </style>
 </head>
 
@@ -173,8 +184,13 @@
     </div>
     <div class="gallery">
         <% photos.forEach((photo, index) => { %>
-        <img class="galleryimg" src="/<%= photo.url %>"
-            data-index="<%= index %>">
+        <div class="gallery-item">
+            <img class="galleryimg" src="/<%= photo.url %>" data-index="<%= index %>">
+            <form action="/profile/delete/photo" method="post">
+                <input type="hidden" name="photoId" value="<%= photo.id %>">
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
         <% }); %>
         <% videos.forEach(video => { %>
         <video class="galleryvideo" controls>
@@ -187,15 +203,17 @@
     <form action="/profile/upload?username=<%= username %>" method="post" enctype="multipart/form-data">
         <label for="mediaInput">Выбрать фотографию</label>
         <input type="file" id="mediaInput" name="media" accept="image/*, video/*">
-        <button type="submit" value="Загрузить">Загрузить</button>
+        <button type="submit" value="Загрузить" style="font-size: 20px;">Загрузить</button>
     </form>
 
     <div id="image-viewer">
         <span class="close">&times;</span>
-        <a id="downloadLink" href="" download style="color: white; text-decoration: none; margin: 10px;">скачать</a>
         <img class="modal-content" id="full-image">
+        <div class="buttons">
+            <button id="share-button">Поделиться</button>
+            <a id="downloadLink" href="" download style="color: white; text-decoration: none; margin: 10px;">скачать</a>
+        </div>
     </div>
-
     <script>
         let images = document.querySelectorAll('.galleryimg');
 
@@ -203,11 +221,11 @@
             image.addEventListener('click', function () {
                 let src = this.src;
                 document.getElementById('full-image').src = src;
-                
+
                 let index = this.getAttribute('data-index');
-                
+
                 document.getElementById('downloadLink').href = src;
-                
+
                 document.getElementById('image-viewer').style.display = 'block';
             });
         });
@@ -216,8 +234,13 @@
             document.getElementById('image-viewer').style.display = 'none';
         });
 
+        document.querySelector('#share-button').addEventListener('click', function () {
+            let imageSrc = document.getElementById('full-image').src;
+            navigator.clipboard.writeText(imageSrc);
+            alert('Готово');
+        });
+
     </script>
 
 </body>
-
 </html>
