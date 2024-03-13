@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль</title>
     <style>
-        body {
+                body {
             font-family: Arial;
             overflow-x: hidden;
         }
@@ -166,6 +166,7 @@
             margin-top: 10px;
             background-color: white;
         }
+
     </style>
 </head>
 
@@ -201,10 +202,10 @@
         <% }); %>
     </div>
 
-    <form action="/profile/upload?username=<%= username %>" method="post" enctype="multipart/form-data">
-        <label for="mediaInput">Выбрать фотографию</label>
-        <input type="file" id="mediaInput" name="media" accept="image/*, video/*">
-        <button type="submit" value="Загрузить" style="font-size: 20px;">Загрузить</button>
+    <form id="uploadForm" action="/profile/upload?username=<%= username %>" method="post" enctype="multipart/form-data">
+        <label for="mediaInput" >Выбрать фотографию</label>
+        <input type="file" id="mediaInput" name="media" accept="image/*, video/*" onchange="enableDeleteButton()" style="background-color: black; color: white; border-radius: 10px;">
+        <button id="uploadButton" type="submit" value="Загрузить" style="font-size: 20px;" disabled>Загрузить</button>
     </form>
 
     <div id="image-viewer">
@@ -241,7 +242,11 @@
             alert('Готово');
         });
 
+        function enableDeleteButton() {
+            document.getElementById('uploadButton').disabled = false;
+        }
     </script>
 
 </body>
+
 </html>
