@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.1,SATURATION_CONST=-.5;function Slumber(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.saturation(SATURATION_CONST))}Slumber.filterName="Slumber";export default Slumber;

@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.1,COLOR_FILTER_CONST=[255,255,0,.2];function Walden(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.colorFilter(COLOR_FILTER_CONST))}Walden.filterName="Walden";export default Walden;

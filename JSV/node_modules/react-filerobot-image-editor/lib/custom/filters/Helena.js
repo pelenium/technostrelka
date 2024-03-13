@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[208,208,86,.2],CONTRAST_CONST=.15;function Helena(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.contrast(CONTRAST_CONST))}Helena.filterName="Helena";export default Helena;

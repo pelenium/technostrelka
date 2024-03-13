@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var ADJUST_RGB_CONST=[1.05,1.1,1];function Perpetua(a){BaseFilters.apply(a,BaseFilters.adjustRGB(ADJUST_RGB_CONST))}Perpetua.filterName="Perpetua";export default Perpetua;

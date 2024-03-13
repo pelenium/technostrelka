@@ -1,0 +1,1 @@
+var usePhoneScreen=function(){var a=0<arguments.length&&arguments[0]!==void 0?arguments[0]:438;return window.matchMedia("(max-width: ".concat(a,"px)")).matches};export default usePhoneScreen;

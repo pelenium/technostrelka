@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var CONTRAST_CONST=.2,COLOR_FILTER_CONST=[140,10,185,.1];function Brannan(a){BaseFilters.apply(a,BaseFilters.contrast(CONTRAST_CONST),BaseFilters.colorFilter(COLOR_FILTER_CONST))}Brannan.filterName="Brannan";export default Brannan;

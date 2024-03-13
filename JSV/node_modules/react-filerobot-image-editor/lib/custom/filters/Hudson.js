@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var ADJUST_RGB_CONST=[1,1,1.25],CONTRAST_CONST=.1,BRIGHTNESS_CONST=.15;function Hudson(a){BaseFilters.apply(a,BaseFilters.adjustRGB(ADJUST_RGB_CONST),BaseFilters.contrast(CONTRAST_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Hudson.filterName="Hudson";export default Hudson;

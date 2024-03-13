@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[25,240,252,.05],SEPIA_CONST=.3;function Brooklyn(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.sepia(SEPIA_CONST))}Brooklyn.filterName="Brooklyn";export default Brooklyn;

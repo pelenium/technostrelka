@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var SATURATION_CONST=.35,BRIGHTNESS_CONST=.1;function Skyline(a){BaseFilters.apply(a,BaseFilters.saturation(SATURATION_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Skyline.filterName="Skyline";export default Skyline;

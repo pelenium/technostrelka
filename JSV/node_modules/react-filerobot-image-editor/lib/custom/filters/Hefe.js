@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var CONTRAST_CONST=.1,SATURATION_CONST=.15;function Hefe(a){BaseFilters.apply(a,BaseFilters.contrast(CONTRAST_CONST),BaseFilters.saturation(SATURATION_CONST))}Hefe.filterName="Hefe";export default Hefe;

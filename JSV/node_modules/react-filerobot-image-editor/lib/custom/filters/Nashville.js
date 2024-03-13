@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[220,115,188,.12],CONTRAST_CONST=-.05;function Nashville(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.contrast(CONTRAST_CONST))}Nashville.filterName="Nashville";export default Nashville;

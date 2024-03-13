@@ -151,6 +151,10 @@ app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/html/login.html');
 });
 
+app.get('/editor', (req, res) => {
+    res.sendFile(__dirname + '/html/editor.html');
+});
+
 app.get('/signup', (req, res) => {
     res.sendFile(__dirname + '/html/signup.html');
 });

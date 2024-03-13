@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[230,115,108,.05],SATURATION_CONST=.15;function Mayfair(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.saturation(SATURATION_CONST))}Mayfair.filterName="Mayfair";export default Mayfair;

@@ -1,0 +1,1 @@
+import{DEFAULT_SAVE_QUALITY}from"./constants";var getDefaultSaveQuality=function(a){return 0>=a||1<a?DEFAULT_SAVE_QUALITY:a};export default getDefaultSaveQuality;

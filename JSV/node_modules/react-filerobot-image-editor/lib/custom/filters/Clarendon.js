@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.1,CONTRAST_CONST=.1,SATURATION_CONST=.15;function Clarendon(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.contrast(CONTRAST_CONST),BaseFilters.saturation(SATURATION_CONST))}Clarendon.filterName="Clarendon";export default Clarendon;

@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,50,80,.12],CONTRAST_CONST=.05;function Charmes(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.contrast(CONTRAST_CONST))}Charmes.filterName="Charmes";export default Charmes;

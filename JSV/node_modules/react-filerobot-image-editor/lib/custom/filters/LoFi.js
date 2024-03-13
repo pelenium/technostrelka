@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var CONTRAST_CONST=.15,SATURATION_CONST=.2;function LoFi(a){BaseFilters.apply(a,BaseFilters.contrast(CONTRAST_CONST),BaseFilters.saturation(SATURATION_CONST))}LoFi.filterName="LoFi";export default LoFi;

@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var ADJUST_RGB_CONST=[1.04,1,1.02],SATURATION_CONST=-.05;function Crema(a){BaseFilters.apply(a,BaseFilters.adjustRGB(ADJUST_RGB_CONST),BaseFilters.saturation(SATURATION_CONST))}Crema.filterName="Crema";export default Crema;

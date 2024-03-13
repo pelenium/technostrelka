@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.05,SATURATION_CONST=-.03;function Ludwig(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.saturation(SATURATION_CONST))}Ludwig.filterName="Ludwig";export default Ludwig;

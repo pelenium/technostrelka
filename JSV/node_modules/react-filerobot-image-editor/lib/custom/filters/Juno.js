@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var ADJUST_RGB_CONST=[1.01,1.04,1],SATURATION_CONST=.3;function Juno(a){BaseFilters.apply(a,BaseFilters.adjustRGB(ADJUST_RGB_CONST),BaseFilters.saturation(SATURATION_CONST))}Juno.filterName="Juno";export default Juno;

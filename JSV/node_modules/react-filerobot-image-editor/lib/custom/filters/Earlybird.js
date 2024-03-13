@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,165,40,.2];function Earlybird(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST))}Earlybird.filterName="Earlybird";export default Earlybird;

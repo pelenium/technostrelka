@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var SEPIA_CONST=.06,BRIGHTNESS_CONST=.1;function Ginza(a){BaseFilters.apply(a,BaseFilters.sepia(SEPIA_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Ginza.filterName="Ginza";export default Ginza;

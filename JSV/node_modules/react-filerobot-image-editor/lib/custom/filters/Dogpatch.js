@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var CONTRAST_CONST=.15,BRIGHTNESS_CONST=.1;function Dogpatch(a){BaseFilters.apply(a,BaseFilters.contrast(CONTRAST_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Dogpatch.filterName="Dogpatch";export default Dogpatch;

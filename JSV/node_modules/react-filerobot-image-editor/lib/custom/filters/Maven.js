@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[225,240,0,.1],SATURATION_CONST=.25,CONTRAST_CONST=.05;function Maven(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.saturation(SATURATION_CONST),BaseFilters.contrast(CONTRAST_CONST))}Maven.filterName="Maven";export default Maven;

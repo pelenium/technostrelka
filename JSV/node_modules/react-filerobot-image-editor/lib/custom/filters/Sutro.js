@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=-.1,SATURATION_CONST=-.1;function Sutro(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.saturation(SATURATION_CONST))}Sutro.filterName="Sutro";export default Sutro;

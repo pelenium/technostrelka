@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.08,ADJUST_RGB_CONST=[1,1.03,1.05],SATURATION_CONST=.12;function Lark(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.adjustRGB(ADJUST_RGB_CONST),BaseFilters.saturation(SATURATION_CONST))}Lark.filterName="Lark";export default Lark;

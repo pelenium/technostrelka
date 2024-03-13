@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var SEPIA_CONST=.04,CONTRAST_CONST=-.15;function Gingham(a){BaseFilters.apply(a,BaseFilters.sepia(SEPIA_CONST),BaseFilters.contrast(CONTRAST_CONST))}Gingham.filterName="Gingham";export default Gingham;

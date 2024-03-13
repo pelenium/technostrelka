@@ -1,0 +1,11 @@
+export declare const rgbStringToArray: (rgbColorString: string) => number[];
+export declare const hexToRgb: (hexColor: string) => number[];
+export declare const rgbToHex: (...rgbColor: any) => string;
+export declare const hslToHex: (h: number, s: number, l: number) => string;
+export declare const rgbToHsl: (...rgbColor: any) => number[];
+export declare const colorToHsl: (color: string) => number[];
+export declare const colorToRgb: (color: string) => number[];
+export declare const colorToHex: (color: string) => string;
+export declare const hsvToHsl: (h: number, s: number, v: number) => number[];
+export declare const hslToHsv: (h: number, s: number, l: number) => Array<number>;
+export declare const validateHex: (color: string) => boolean;

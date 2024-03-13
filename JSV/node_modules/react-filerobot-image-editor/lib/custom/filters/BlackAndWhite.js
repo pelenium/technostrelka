@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";function BlackAndWhite(a){BaseFilters.apply(a,function(a){var b=(a[0]+a[1]+a[2])/3>100,c=b?255:0;return[c,c,c]})}BlackAndWhite.filterName="BlackAndWhite";export default BlackAndWhite;

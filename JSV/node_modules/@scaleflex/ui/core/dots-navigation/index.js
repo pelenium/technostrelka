@@ -1,0 +1,1 @@
+export { default } from './dots-navigation.component';

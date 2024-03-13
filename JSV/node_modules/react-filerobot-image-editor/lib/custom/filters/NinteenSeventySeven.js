@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,25,0,.15],BRIGHTNESS_CONST=.1;function NinteenSeventySeven(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}NinteenSeventySeven.filterName="NinteenSeventySeven";export default NinteenSeventySeven;

@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[100,28,210,.03],BRIGHTNESS_CONST=.1;function Willow(a){BaseFilters.apply(a,BaseFilters.grayscale(),BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Willow.filterName="Willow";export default Willow;

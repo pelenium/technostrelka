@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,225,0,.05],BRIGHTNESS_CONST=.06,CONTRAST_CONST=.06;function Vesper(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.contrast(CONTRAST_CONST))}Vesper.filterName="Vesper";export default Vesper;

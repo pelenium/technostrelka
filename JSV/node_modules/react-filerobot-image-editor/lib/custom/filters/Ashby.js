@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,160,25,.1],BRIGHTNESS_CONST=.1;function Ashby(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.brightness(BRIGHTNESS_CONST))}Ashby.filterName="Ashby";export default Ashby;

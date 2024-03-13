@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var COLOR_FILTER_CONST=[255,255,0,.07],SATURATION_CONST=.2,CONTRAST_CONST=.15;function XPro2(a){BaseFilters.apply(a,BaseFilters.colorFilter(COLOR_FILTER_CONST),BaseFilters.saturation(SATURATION_CONST),BaseFilters.contrast(CONTRAST_CONST))}XPro2.filterName="XPro2";export default XPro2;

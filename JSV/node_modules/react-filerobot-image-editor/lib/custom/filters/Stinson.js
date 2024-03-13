@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var BRIGHTNESS_CONST=.1,SEPIA_CONST=.3;function Stinson(a){BaseFilters.apply(a,BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.sepia(SEPIA_CONST))}Stinson.filterName="Stinson";export default Stinson;

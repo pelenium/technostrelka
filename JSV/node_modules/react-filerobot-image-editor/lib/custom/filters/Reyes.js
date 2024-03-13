@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var SEPIA_CONST=.4,BRIGHTNESS_CONST=.13,CONTRAST_CONST=-.05;function Reyes(a){BaseFilters.apply(a,BaseFilters.sepia(SEPIA_CONST),BaseFilters.brightness(BRIGHTNESS_CONST),BaseFilters.contrast(CONTRAST_CONST))}Reyes.filterName="Reyes";export default Reyes;

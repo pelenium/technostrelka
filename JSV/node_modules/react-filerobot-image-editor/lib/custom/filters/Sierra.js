@@ -1,0 +1,1 @@
+import BaseFilters from"./BaseFilters";var CONTRAST_CONST=-.15,SATURATION_CONST=.1;function Sierra(a){BaseFilters.apply(a,BaseFilters.contrast(CONTRAST_CONST),BaseFilters.saturation(SATURATION_CONST))}Sierra.filterName="Sierra";export default Sierra;
